@@ -27,13 +27,13 @@ namespace Task1
         /// String representation of Customer object.
         /// </summary>
         public override string ToString() => 
-            ToString("G", CultureInfo.InvariantCulture);
+            this.ToString("G", CultureInfo.InvariantCulture);
 
         /// <summary>
         /// String representation of Customer object using the specified format.
         /// </summary>
         public string ToString(string format) =>
-            ToString(format, CultureInfo.InvariantCulture);
+            this.ToString(format, CultureInfo.InvariantCulture);
 
         /// <summary>
         /// String representation of Customer object using the specified format and culture-specific format information.
@@ -51,7 +51,7 @@ namespace Task1
                 case "C": return $"Customer record: {Name}";
                 case "D": return $"Customer record: {Revenue}";
                 default:
-                    throw new FormatException(String.Format("The {0} format string is not supported.", format));
+                    throw new FormatException($"The {format} format string is not supported.");
 
             }
         }
