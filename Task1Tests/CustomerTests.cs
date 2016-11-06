@@ -27,7 +27,7 @@ namespace Task1Tests
         /// A test for ToString without parameter.
         /// </summary>
         [TestCase(ExpectedResult = "Customer record: Jeffrey Richter, 1,000,000.00, +1 (425) 555-0100")]
-        public string ToString_NoParameter_ValidData(string expected) => customer.ToString();
+        public string ToString_NoParameter_ValidData() => customer.ToString();
 
         /// <summary>
         /// A test for ToString with invalid format.
