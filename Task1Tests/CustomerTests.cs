@@ -16,26 +16,18 @@ namespace Task1Tests
         /// <summary>
         /// A test for ToString with valid data.
         /// </summary>
-        [TestCase("G", "Customer record: Jeffrey Richter, 1,000,000.00, +1 (425) 555-0100")]
-        [TestCase("A", "Customer record: +1 (425) 555-0100")]
-        [TestCase("B", "Customer record: Jeffrey Richter, 1,000,000.00")]
-        [TestCase("C", "Customer record: Jeffrey Richter")]
-        [TestCase("D", "Customer record: 1000000")]
-        public void ToString_ValidData_ValidResult(string format, string expected)
-        {
-            string actual = customer.ToString(format);
-            Assert.AreEqual(expected, actual);
-        }
+        [TestCase("G",ExpectedResult = "Customer record: Jeffrey Richter, 1,000,000.00, +1 (425) 555-0100")]
+        [TestCase("A",ExpectedResult = "Customer record: +1 (425) 555-0100")]
+        [TestCase("B",ExpectedResult = "Customer record: Jeffrey Richter, 1,000,000.00")]
+        [TestCase("C",ExpectedResult = "Customer record: Jeffrey Richter")]
+        [TestCase("D",ExpectedResult = "Customer record: 1000000")]
+        public string ToString_ValidData_ValidResult(string format) => customer.ToString(format);
 
         /// <summary>
         /// A test for ToString without parameter.
         /// </summary>
-        [TestCase("Customer record: Jeffrey Richter, 1,000,000.00, +1 (425) 555-0100")]
-        public void ToString_NoParameter_ValidData(string expected)
-        {
-            string actual = customer.ToString();
-            Assert.AreEqual(expected, actual);
-        }
+        [TestCase(ExpectedResult = "Customer record: Jeffrey Richter, 1,000,000.00, +1 (425) 555-0100")]
+        public string ToString_NoParameter_ValidData(string expected) => customer.ToString();
 
         /// <summary>
         /// A test for ToString with invalid format.
