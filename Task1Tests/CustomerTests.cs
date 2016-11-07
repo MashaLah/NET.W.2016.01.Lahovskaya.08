@@ -55,5 +55,25 @@ namespace Task1Tests
         {
             Assert.Throws<FormatException>(() => string.Format(new CustumerFormatter(),"{0:Q}", customer));
         }
+
+        /// <summary>
+        /// A test for Format with arg is not Customer.
+        /// </summary>
+        [TestCase(ExpectedResult ="System.Object")]
+        public string Format_InvalidArg_ThrowsArgumentNullException()
+        {
+            object obj = new object();
+            return string.Format(new CustumerFormatter(), "{0}", obj);
+        }
+            
+
+        /// <summary>
+        /// A test for Format with arg is null.
+        /// </summary>
+        [Test]
+        public void Format_ArgIsNull_ThrowsException()
+        {
+            Assert.Throws<ArgumentNullException>(() => string.Format(new CustumerFormatter(), "{0}", null));
+        }
     }
 }
