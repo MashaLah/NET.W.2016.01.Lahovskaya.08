@@ -38,10 +38,22 @@ namespace Task1Tests
             Assert.Throws<FormatException>(() => customer.ToString("Q"));
         }
 
+        /// <summary>
+        /// A test for Format with valid data.
+        /// </summary>
         [TestCase("{0:E}",ExpectedResult = "Customer record: Jeffrey Richter, 1000000,00, +1 (425) 555-0100")]
         [TestCase("{0:F}", ExpectedResult = "Customer record: Name Jeffrey Richter, Telehpone +1 (425) 555-0100")]
         [TestCase("{0}", ExpectedResult = "Customer record: Jeffrey Richter, 1000000,00, +1 (425) 555-0100")]
         public string Format_ValidData_ValidResult(string format)=>
             string.Format(new CustumerFormatter(), format, customer);
+
+        /// <summary>
+        /// A test for Format with invalid format.
+        /// </summary>
+        [Test]
+        public void Format_InvalidFormat_ThrowsFormatException()
+        {
+            Assert.Throws<FormatException>(() => string.Format(new CustumerFormatter(),"{0:Q}", customer));
+        }
     }
 }
