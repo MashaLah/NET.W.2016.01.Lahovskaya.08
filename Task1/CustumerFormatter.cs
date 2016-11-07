@@ -10,7 +10,13 @@ namespace Task1
     {
         public object GetFormat(Type formatType)=>
              formatType == typeof(ICustomFormatter) ? this : null;
-        
+
+        /// <summary>
+        /// String representation of the arg.
+        /// </summary>
+        ///<exception>
+        /// Throw ArgumentNullException if arg is null.
+        ///</exception>
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
             if (ReferenceEquals(arg, null))
