@@ -40,7 +40,7 @@ namespace Task1
         /// </summary>
         public string ToString(string format, IFormatProvider provider)
         {
-            if (String.IsNullOrEmpty(format)) format = "G";
+            if (string.IsNullOrEmpty(format)) format = "G";
             if (provider == null) provider = CultureInfo.InvariantCulture;
 
             switch (format.ToUpperInvariant())
@@ -51,7 +51,7 @@ namespace Task1
                 case "C": return $"Customer record: {Name}";
                 case "D": return $"Customer record: {Revenue}";
                 default:
-                    throw new FormatException($"The {format} format string is not supported.");
+                    throw new FormatException($"The {format} format specifier is not supported.");
 
             }
         }
