@@ -25,7 +25,7 @@ namespace Task1
                 return arg.ToString();
 
             if (string.IsNullOrEmpty(format))
-                format = "G";
+                format = "E";
 
             switch (format.ToUpperInvariant())
             {

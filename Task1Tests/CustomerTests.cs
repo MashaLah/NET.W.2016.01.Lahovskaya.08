@@ -40,6 +40,7 @@ namespace Task1Tests
 
         [TestCase("{0:E}",ExpectedResult = "Customer record: Jeffrey Richter, 1000000,00, +1 (425) 555-0100")]
         [TestCase("{0:F}", ExpectedResult = "Customer record: Name Jeffrey Richter, Telehpone +1 (425) 555-0100")]
+        [TestCase("{0}", ExpectedResult = "Customer record: Jeffrey Richter, 1000000,00, +1 (425) 555-0100")]
         public string Format_ValidData_ValidResult(string format)=>
             string.Format(new CustumerFormatter(), format, customer);
     }
