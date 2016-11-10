@@ -26,22 +26,31 @@ namespace Task1
         /// <summary>
         /// String representation of Customer object.
         /// </summary>
+        /// <returns>Default string representation of object</returns>
         public override string ToString() => 
-            this.ToString("G", CultureInfo.InvariantCulture);
+            this.ToString("G", CultureInfo.CurrentCulture);
 
         /// <summary>
-        /// String representation of Customer object using the specified format.
+        /// String representation of Customer object using the specified format
         /// </summary>
+        /// <param name="format">String format. Can be "G","A","B","C","D". "G" by default</param>
+        /// <returns>String representation of object with dafault culture</returns>
         public string ToString(string format) =>
-            this.ToString(format, CultureInfo.InvariantCulture);
+            this.ToString(format, CultureInfo.CurrentCulture);
 
         /// <summary>
         /// String representation of Customer object using the specified format and culture-specific format information.
         /// </summary>
+        /// <param name="format">String format. Can be "G","A","B","C","D". "G" by default</param>
+        /// <param name="provider">Format provider. CurrentCulture by default</param>
+        /// <exception cref="FormatException">
+        /// Throws if format specifier is not supported.
+        /// </exception>
+        /// <returns>String representation of object</returns>
         public string ToString(string format, IFormatProvider provider)
         {
             if (string.IsNullOrEmpty(format)) format = "G";
-            if (provider == null) provider = CultureInfo.InvariantCulture;
+            if (provider == null) provider = CultureInfo.CurrentCulture;
 
             switch (format.ToUpperInvariant())
             {

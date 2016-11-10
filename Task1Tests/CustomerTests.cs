@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Task1;
 using NUnit.Framework;
+using System.Globalization;
 
 namespace Task1Tests
 {
@@ -21,13 +22,7 @@ namespace Task1Tests
         [TestCase("B",ExpectedResult = "Customer record: Jeffrey Richter, 1,000,000.00")]
         [TestCase("C",ExpectedResult = "Customer record: Jeffrey Richter")]
         [TestCase("D",ExpectedResult = "Customer record: 1000000")]
-        public string ToString_ValidData_ValidResult(string format) => customer.ToString(format);
-
-        /// <summary>
-        /// A test for ToString without parameter.
-        /// </summary>
-        [TestCase(ExpectedResult = "Customer record: Jeffrey Richter, 1,000,000.00, +1 (425) 555-0100")]
-        public string ToString_NoParameter_ValidData() => customer.ToString();
+        public string ToString_ValidData_ValidResult(string format) => customer.ToString(format,CultureInfo.InvariantCulture);
 
         /// <summary>
         /// A test for ToString with invalid format.
@@ -41,11 +36,11 @@ namespace Task1Tests
         /// <summary>
         /// A test for Format with valid data.
         /// </summary>
-        [TestCase("{0:E}",ExpectedResult = "Customer record: Jeffrey Richter, 1000000,00, +1 (425) 555-0100")]
+        [TestCase("{0:E}",ExpectedResult = "Customer record: Jeffrey Richter, 1000000.00, +1 (425) 555-0100")]
         [TestCase("{0:F}", ExpectedResult = "Customer record: Name Jeffrey Richter, Telehpone +1 (425) 555-0100")]
-        [TestCase("{0}", ExpectedResult = "Customer record: Jeffrey Richter, 1000000,00, +1 (425) 555-0100")]
+        [TestCase("{0}", ExpectedResult = "Customer record: Jeffrey Richter, 1000000.00, +1 (425) 555-0100")]
         public string Format_ValidData_ValidResult(string format)=>
-            string.Format(new CustumerFormatter(), format, customer);
+            string.Format(new CustumerProvider(CultureInfo.InvariantCulture), format, customer);
 
         /// <summary>
         /// A test for Format with invalid format.
@@ -53,7 +48,7 @@ namespace Task1Tests
         [Test]
         public void Format_InvalidFormat_ThrowsFormatException()
         {
-            Assert.Throws<FormatException>(() => string.Format(new CustumerFormatter(),"{0:Q}", customer));
+            Assert.Throws<FormatException>(() => string.Format(new CustumerProvider(CultureInfo.InvariantCulture),"{0:Q}", customer));
         }
 
         /// <summary>
@@ -63,7 +58,7 @@ namespace Task1Tests
         public string Format_InvalidArg_ThrowsArgumentNullException()
         {
             object obj = new object();
-            return string.Format(new CustumerFormatter(), "{0}", obj);
+            return string.Format(new CustumerProvider(CultureInfo.InvariantCulture), "{0}", obj);
         }
             
 
@@ -73,7 +68,7 @@ namespace Task1Tests
         [Test]
         public void Format_ArgIsNull_ThrowsException()
         {
-            Assert.Throws<ArgumentNullException>(() => string.Format(new CustumerFormatter(), "{0}", null));
+            Assert.Throws<ArgumentNullException>(() => string.Format(new CustumerProvider(CultureInfo.InvariantCulture), "{0}", null));
         }
     }
 }
